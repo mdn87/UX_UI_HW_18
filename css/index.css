@@ -79,6 +79,7 @@ body {
 #skills {
   grid-area: skills;
   padding-right: 25px;
+  height: 800px;
 }
 #work {
   grid-area: work;
