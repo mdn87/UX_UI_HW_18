@@ -6,11 +6,13 @@ body {
 #navBar {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   width: 100%;
+  height: 200px;
   margin: 0px;
   padding-left: 5%;
-  border-bottom: 10px solid blue;
+  border-bottom: 10px solid rgba(0,174,239,1);
   border-color: rgba(0,174,239,1);
   position: sticky;
   top: 0px;
@@ -18,12 +20,13 @@ body {
 }
 #navigation {
   display: flex;
-  width: 50%;
   align-items: center;
   justify-content: space-evenly;
+  gap: 3%;
 }
-#logo {
-
+#navigation img {
+  width: 150px;
+  height: 150px;
 }
 #navigation p {
   cursor: pointer;
@@ -32,14 +35,11 @@ body {
 .icons {
   display: flex;
   justify-content: flex-end;
-  padding-left: 30%;
+  margin-right: 10%;
 }
 .icons img {
   width: 50px;
   height: 50px;
-}
-.icons img {
-  margin: 15px;
   cursor: pointer;
 }
 .highlight {
@@ -47,42 +47,68 @@ body {
   border-radius: 50%;
 }
 
-#sidebar2 {
-  position: sticky;
-  top: 250px;
-  width: 250px;
-  
-}
 /* mainContent flexbox */
 #mainContent {
   margin: 0px 1%;
   display: grid;
-  grid-template-rows: 520px 200px 200px 200px;
-  grid-template-columns: 1fr 1fr 2fr 1fr;
+  grid-template-rows: 520px 150px 200px 200px;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
   grid-template-areas:
   "sidebar heroSection heroSection heroSection"
-  "sidebar skills exp exp"
-  "sidebar skills exp exp"
+  "sidebar aboutMe aboutMe aboutMe"
+  "sidebar skills work work"
+  "sidebar skills work work"
   ;
 }
-
 #sidebar {
   grid-area: sidebar;
 
 }
 #heroSection {
   grid-area: heroSection;
-  background-image: url("/img/heroimg.png"); /*heroimg.png*/
+  /*
+  background-image: url("/img/heroimg.png");
   object-fit: fill;
-  background-repeat: no-repeat;
+  background-repeat: no-repeat; 
+  */
+}
+#aboutMe {
+  grid-area: aboutMe;
+  padding-right: 25px;
 }
 #skills {
   grid-area: skills;
   padding-right: 25px;
 }
+#work {
+  grid-area: work;
+  padding-right: 25px;
+}
 #exp {
   grid-area: exp;
   padding-right: 25px;
+}
+.project {
+  display: grid;
+  flex-direction: column;
+  grid-template-rows: 100px 200px;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+  "projTitle projImg"
+  "projDesc projImg"
+  ;
+}
+.projDesc {
+  grid-area: projDesc;
+}
+.projTitle {
+  grid-area: projTitle;
+}
+.projImg {
+  grid-area: projImg;
+  width: 150px;
+  height: 150px;
+  justify-self: flex-end;
 }
 
 /* Sidebar */
@@ -120,10 +146,7 @@ body {
 
 /* Content Sections */
 .textStyles {
-  /*
   font-family: 'Montserrat', sans-serif;
-  font-family: 'Playfair Display', serif;
-  */
 }
 .textStyles h1 {
   font-family: 'Montserrat', sans-serif;
@@ -166,28 +189,85 @@ body {
   color: rgba(0,174,239,0)
 }
 
-/* Junk */
-.relative {
-  background-color: lightblue;
-  height: 250px;
-  padding: 30px;
-  margin: 10px;
-  display: flex;
-  position: relative;
+/* Media Queries */
+@media only screen and (max-width: 1200px) {
+  #mainContent {
+    margin: 0px 1%;
+    display: grid;
+    grid-template-rows: 520px 150px 200px 200px;
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-template-areas:
+    "heroSection heroSection heroSection"
+    "aboutMe aboutMe aboutMe"
+    "skills work work"
+    "skills work work"
+    ;
+  }
+  #sidebar {
+    display: none;
+  }
+  #heroSection {
+    overflow: hidden;
+    height: 500px;
+  }
+  #heroSection img {
+    width: 1500px;
+    margin-left: -30px;
+  }
 }
-.absolute {
-  height: 50px;
-  width: 50px;
-  background-color: red;
-  position: absolute;
-  top: 0;
-  left: 0;
+@media only screen and (max-width: 900px) {
+  #navigation img {
+    width: 120px;
+    height: 120px;
+  }
 }
-.fixed {
-  height: 200px;
-  width: 200px;
-  background-color: green;
-  position: fixed;
-  bottom: 0;
-  right: 0;
+@media only screen and (max-width: 600px) {
+  #navBar {
+    height: 100px;
+    padding-left: 5%;
+    border-bottom: 4px solid rgba(0,174,239,1);
+    justify-content: space-between;
+  }
+  #navigation {
+    gap: 5%;
+  }
+  #navigation img {
+    width: 70px;
+    height: 70px;
+  }
+  .icons {
+    padding-right: 3%;
+  }
+  .icons img {
+    width: 35px;
+    height: 35px;
+    margin: 0px;
+  }
+  #mainContent {
+    margin: 0px 1%;
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    padding-left: 2%;
+    padding-right: 2%;
+  }
+  #heroSection {
+    overflow: hidden;
+    height: 250px;
+  }
+  #heroSection img {
+    width: 800px;
+    margin-left: -30px;
+  }
+  #sidebar {
+    display: none;
+  }
+  .project {
+    grid-template-rows: 100px 200px;
+    grid-template-columns: 2fr 1fr;
+    grid-template-areas:
+    "projTitle projImg"
+    "projDesc projImg"
+    ;
+  }
 }
